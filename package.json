@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "sass": "^1.77.6"
+  },
+  "name": "calculator-app-main",
+  "description": "![Design preview for the Calculator app coding challenge](./design/desktop-preview.jpg)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
