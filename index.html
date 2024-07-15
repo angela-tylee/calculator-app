@@ -8,51 +8,35 @@
   <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-  <div class="calculator">
-    <div class="calculator__header">
-        <span class="calculator__title">calc</span>
-        <div class="calculator__theme">
-            <span>THEME</span>
-            <div class="theme-toggle">
-                <input type="radio" name="theme" id="theme1" checked>
-                <label for="theme1">1</label>
-                <input type="radio" name="theme" id="theme2">
-                <label for="theme2">2</label>
-                <input type="radio" name="theme" id="theme3">
-                <label for="theme3">3</label>
-                <div class="theme-switch"></div>
-            </div>
-        </div>
-    </div>
-    <div class="calculator__display" id="display">
-        399,981
-    </div>
-    <div class="calculator__buttons">
-        <button class="btn">7</button>
-        <button class="btn">8</button>
-        <button class="btn">9</button>
-        <button class="btn btn--del">DEL</button>
-        <button class="btn">4</button>
-        <button class="btn">5</button>
-        <button class="btn">6</button>
-        <button class="btn">+</button>
-        <button class="btn">1</button>
-        <button class="btn">2</button>
-        <button class="btn">3</button>
-        <button class="btn">-</button>
-        <button class="btn">.</button>
-        <button class="btn">0</button>
-        <button class="btn">/</button>
-        <button class="btn">x</button>
-        <button class="btn btn--reset">RESET</button>
-        <button class="btn btn--equal">=</button>
-    </div>
-</div>
 
-  
+<header>
+  <div><img src="" alt="logo"></div>
+  <div class="toggle-container">
+    <span>THEME</span>
+    <label class="toggle">
+      <input type="checkbox">
+      <span for="" class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <span>THEME</span>
+    <label class="toggle">
+      <input type="radio" name="theme" id="theme" value="1" checked>
+      <label for="theme">1</label>
+      <input type="radio" name="theme" id="theme" value="2">
+      <label for="theme">2</label>
+      <input type="radio" name="theme" id="theme" value="3">
+      <label for="theme">3</label>
+    </label>
+</div>
+</header>
+
+<footer>
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">Your Name Here</a>.
   </div>
+</footer>
 </body>
 </html>
