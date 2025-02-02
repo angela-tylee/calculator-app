@@ -1,15 +1,25 @@
 {
-  "dependencies": {
-    "sass": "^1.77.6"
-  },
   "name": "calculator-app-main",
-  "description": "![Design preview for the Calculator app coding challenge](./design/desktop-preview.jpg)",
+  "private": true,
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "ejs": "^3.1.9",
+    "vite": "^6.0.11",
+    "vite-plugin-ejs": "^1.6.4"
+  },
+  "dependencies": {
+    "gh-pages": "^5.0.0",
+    "glob": "^10.2.2",
+    "sass": "^1.61.0",
+    "sass-loader": "^13.2.2",
+    "vite-plugin-live-reload": "^3.0.2"
+  }
 }
+

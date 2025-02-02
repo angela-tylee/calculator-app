@@ -1,0 +1,422 @@
+$white: #FFFFFF;
+
+:root[data-theme="one"] {
+  // $primary1: #434A59;
+  // $bg1: #3A4663;
+  // $bg-toggle1: #242D44;
+  // $bg-input1: #181F33;
+  // $bg-btns1: #242D44;
+  // $btn1: #EAE3DC;
+  // $btn-shadow1: #B3A497;
+  // $btn-accent1: #647198;
+  // $btn-accent-shadow1: #414E73;
+  // $btn-submit1: #D03F2F;
+  // $btn-submit-shadow1: #93261A;
+  --primary: #434A59;
+  --bg: #3A4663;
+  --bg-toggle: #242D44;
+  --bg-input: #181F33;
+  --bg-btns: #242D44;
+  --btn: #EAE3DC;
+  --btn-shadow: #B3A497;
+  --btn-accent: #647198;
+  --btn-accent-shadow: #414E73;
+  --btn-submit: #D03F2F;
+  --btn-submit-shadow: #93261A;
+}
+
+:root[data-theme="two"] {
+  // $primary2: #36362C;
+  // $bg2: #E6E6E6;
+  // $bg-toggle2: #D2CDCD;
+  // $bg-input2: #EEEEEE;
+  // $bg-btns2: #D2CDCD;
+  // $btn2: #E5E4E1;
+  // $btn-shadow2: #A79E91;
+  // $btn-accent2: #378187;
+  // $btn-accent-shadow2: #1B6066;
+  // $btn-submit2: #C85402;
+  // $btn-submit-shadow2: #873901;
+  --primary: #36362C;
+  --bg: #E6E6E6;
+  --bg-toggle: #D2CDCD;
+  --bg-input: #EEEEEE;
+  --bg-btns: #D2CDCD;
+  --btn: #E5E4E1;
+  --btn-shadow: #A79E91;
+  --btn-accent: #378187;
+  --btn-accent-shadow: #1B6066;
+  --btn-submit: #C85402;
+  --btn-submit-shadow: #873901;
+}
+
+:root[data-theme="three"] {
+  // $primary3: #FFE53D;
+  // $bg3: #17062A;
+  // $bg-toggle3: #1E0936;
+  // $bg-input3: #1E0936;
+  // $bg-btns3: #1E0936;
+  // $btn3: #331C4D;
+  // $btn-shadow3: #881C9E;
+  // $btn-accent3: #56077C;
+  // $btn-accent-shadow3: #BE15F4;
+  // $btn-submit3: #00DED0;
+  // $btn-submit-shadow3: #6CF9F1;
+  --primary: #FFE53D;
+  --bg: #17062A;
+  --bg-toggle: #1E0936;
+  --bg-input: #1E0936;
+  --bg-btns: #1E0936;
+  --btn: #331C4D;
+  --btn-shadow: #881C9E;
+  --btn-accent: #56077C;
+  --btn-accent-shadow: #BE15F4;
+  --btn-submit: #00DED0;
+  --btn-submit-shadow: #6CF9F1;
+}
+
+body {
+  background: var(--bg);
+
+  .calculator-display-container {
+    background: var(--bg-input);
+    height: 128px;
+    width: 100%;
+  }
+
+  .calculator-btns {
+    background: var(--bg-btns);
+  }
+
+  .btn {
+    border-bottom: solid 4px var(--btn-shadow);
+    color: var(--primary);
+    background-color: var(--btn);
+    &.btn-del,
+    &.btn-reset,
+    &.btn-equal {
+      color: $white;
+    }
+    &.btn-del {
+      background: var(--btn-accent);
+      border-bottom: solid 4px var(--btn-accent-shadow);
+    }
+    &.btn-reset {
+      background: var(--btn-accent);
+      border-bottom: solid 4px var(--btn-accent-shadow);
+  
+    }
+    &.btn-equal {
+      background: var(--btn-submit);
+      border-bottom: solid 4px var(--btn-submit-shadow);
+    }
+    &:hover {
+      // filter: brightness(1.2) saturate(0.8);
+      @include btn-hover;
+    }
+    &:active,
+    &.btn-pressed {
+      // border: 0;
+      @include btn-pressed;
+    }
+  }
+
+  .toggle-label {
+    color: var(--primary);
+  }
+  
+  .toggle-title {
+    color: var(--primary);
+  }
+  
+  .toggle {
+    background: var(--bg-toggle);
+  }
+  
+  .slider {
+    background: var(--btn-submit);
+  }
+
+  header {
+    .logo {
+      color: var(--primary);
+    }
+  }
+  
+  .calculator-display {
+    color: var(--primary);
+  }
+
+  footer {
+    color: var(--primary);
+    a {
+      color: var(--primary);
+    }
+  }
+}
+
+:root[data-theme="one"] {
+  
+  header {
+    .logo {
+      color: $white;
+    }
+  }
+  
+  .calculator-display {
+    color: $white;
+  }
+
+  .toggle-label {
+    color: $white;
+  }
+  
+  .toggle-title {
+    color: $white;
+  }
+  
+  footer {
+    color: $white;
+    a {
+      color: $white;
+    }
+  }
+}
+
+// :root[data-theme="two"] {
+
+//   header {
+//     .logo {
+//       color: var(--primary);
+//     }
+//   }
+  
+//   .calculator-display {
+//     color: var(--primary);
+//   }
+
+//   footer {
+//     color: var(--primary);
+//     a {
+//       color: var(--primary);
+//     }
+//   }
+// }
+
+// :root[data-theme="three"] {
+  
+//   header {
+//     .logo {
+//       color: var(--primary);
+//     }
+//   }
+  
+//   .calculator-display {
+//     color: var(--primary);
+//   }
+
+//   footer {
+//     color: var(--primary);
+//     a {
+//       color: var(--primary);
+//     }
+//   }
+// }
+
+// body.theme1 {
+//   background: $bg1;
+  
+//   header {
+//     .logo {
+//       color: $white;
+//     }
+//   }
+  
+//   .calculator-display {
+//     background: $bg-input1;
+//     color: $white;
+//   }
+  
+//   .calculator-btns {
+//     background: $bg-btns1;
+//   }
+  
+//   .btn {
+//     border-bottom: solid 4px $btn-shadow1;
+//     color: $primary1;
+//     background-color: $btn1;
+//     &.btn-del,
+//     &.btn-reset,
+//     &.btn-equal {
+//       color: $white;
+//     }
+//     &.btn-del {
+//       background: $btn-accent1;
+//       border-bottom: solid 4px $btn-accent-shadow1;
+//     }
+//     &.btn-reset {
+//       background: $btn-accent1;
+//       border-bottom: solid 4px $btn-accent-shadow1;
+  
+//     }
+//     &.btn-equal {
+//       background: $btn-submit1;
+//       border-bottom: solid 4px $btn-submit-shadow1;
+//     }
+//   }
+  
+//   .toggle-label {
+//     color: $white;
+//   }
+  
+//   .toggle-title {
+//     color: $white;
+//   }
+  
+//   .toggle {
+//     background: $bg-toggle1;
+//   }
+  
+//   .slider {
+//     background: $btn-submit1;
+//   }
+
+//   footer {
+//     color: $white;
+//     a {
+//       color: $white;
+//     }
+//   }
+// }
+
+// body.theme2 {
+//   background:$bg2;
+
+//   header {
+//     .logo {
+//       color: $primary2;
+//     }
+//   }
+  
+//   .calculator-display {
+//     background: $bg-input2;
+//     color: $primary2;
+//   }
+  
+//   .calculator-btns {
+//     background: $bg-btns2;
+//   }
+  
+//   .btn {
+//     border-bottom: solid 4px $btn-shadow2;
+//     color: $primary2;
+//     background-color: $btn2;
+//     &.btn-del,
+//     &.btn-reset,
+//     &.btn-equal {
+//       color: $white;
+//     }
+//     &.btn-del {
+//       background: $btn-accent2;
+//       border-bottom: solid 4px $btn-accent-shadow2;
+//     }
+//     &.btn-reset {
+//       background: $btn-accent2;
+//       border-bottom: solid 4px $btn-accent-shadow2;
+  
+//     }
+//     &.btn-equal {
+//       background: $btn-submit2;
+//       border-bottom: solid 4px $btn-submit-shadow2;
+//     }
+//   }
+  
+//   .toggle-label {
+//     color: $primary2;
+//   }
+  
+//   .toggle-title {
+//     color: $primary2;
+//   }
+  
+//   .toggle {
+//     background: $bg-toggle2;
+//   }
+  
+//   .slider {
+//     background: $btn-submit2;
+//   }
+
+//   footer {
+//     color: $primary2;
+//     a {
+//       color: $primary2;
+//     }
+//   }
+// }
+
+// body.theme3 {
+//   background:$bg3;
+  
+//   header {
+//     .logo {
+//       color: $primary3;
+//     }
+//   }
+  
+//   .calculator-display {
+//     background: $bg-input3;
+//     color: $primary3;
+//   }
+  
+//   .calculator-btns {
+//     background: $bg-btns3;
+//   }
+  
+//   .btn {
+//     border-bottom: solid 4px $btn-shadow3;
+//     color: $primary3;
+//     background-color: $btn3;
+//     &.btn-del,
+//     &.btn-reset,
+//     &.btn-equal {
+//       color: $white;
+//     }
+//     &.btn-del {
+//       background: $btn-accent3;
+//       border-bottom: solid 4px $btn-accent-shadow3;
+//     }
+//     &.btn-reset {
+//       background: $btn-accent3;
+//       border-bottom: solid 4px $btn-accent-shadow3;
+  
+//     }
+//     &.btn-equal {
+//       background: $btn-submit3;
+//       border-bottom: solid 4px $btn-submit-shadow3;
+//     }
+//   }
+  
+//   .toggle-label {
+//     color: $primary3;
+//   }
+  
+//   .toggle-title {
+//     color: $primary3;
+//   }
+  
+//   .toggle {
+//     background: $bg-toggle3;
+//   }
+  
+//   .slider {
+//     background: $btn-submit3;
+//   }
+
+//   footer {
+//     color: $primary3;
+//     a {
+//       color: $primary3;
+//     }
+//   }
+// }
