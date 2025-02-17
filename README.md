@@ -2,14 +2,12 @@
   
 ## Table of contents
 
-- [Project Title](#project-title)
-  - [Table of contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Screenshot](#screenshot)
-    - [Links](#links)
-  - [My Process](#my-process)
-    - [Built with](#built-with)
-    - [What I learned](#what-i-learned)
+- [Overview](#overview)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My Process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
 
 ## Overview
 
