@@ -20,7 +20,7 @@
 ### Links
 
 - Solution URL: https://github.com/angela-tylee/calculator-app/
-- Live Site URL: https://angela-tylee.github.io/dictionary-web-app/
+- Live Site URL: https://angela-tylee.github.io/calculator-app/
 
 ## My Process
 
