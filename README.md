@@ -15,7 +15,7 @@
 
 ### Screenshot
 
-  
+![desktop-preview](https://github.com/user-attachments/assets/3deb3c05-507f-45dd-b026-292092741aea)
   
 ### Links
 
