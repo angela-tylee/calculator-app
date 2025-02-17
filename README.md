@@ -1,4 +1,4 @@
-# Project Title
+# Calculator App
   
 ## Table of contents
 
