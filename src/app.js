@@ -32,6 +32,11 @@ themeToggle.forEach((toggle) => {
 
 // calculate
 
+// TODO: 小數點
+// TODO: 0 開頭
+// TODO: * / textContent
+// TODO: 超出鍵盤 overflow hidden?
+
 const display = document.querySelector("#calculator-display");
 const numberBtns = document.querySelectorAll('.btn-number');
 const operatorBtns = document.querySelectorAll('.btn-operator');
