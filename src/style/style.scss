@@ -40,6 +40,11 @@ header {
   // background: $bg-input1;
   text-align: right;
   // color: $white;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  .calculator-display {
+    overflow-x: scroll;
+  }
 }
 
 .calculator-btns {

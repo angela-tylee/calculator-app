@@ -1,108 +1,178 @@
-// import './style/css-reset.scss';
-// import './style/_theme.scss';
-// import './style/style.scss';
 
-// load current theme
+// theme switcher
 const currentTheme = localStorage.getItem('theme');
 
 const themeToggle = document.querySelectorAll('#theme');
-// const theme = document.querySelector('input[name="theme"]');
 
 themeToggle.forEach((toggle) => {
   toggle.addEventListener('click', (e) => {
     console.log(e.target.value);
     if (e.target.value === '1') {
       document.documentElement.setAttribute('data-theme', 'one')
-      // document.body.classList.remove();
-      // document.body.classList.add('theme-1');
       localStorage.setItem('theme', '1');
     } else if (e.target.value === '2') {
       document.documentElement.setAttribute('data-theme', 'two')
-      // document.body.classList.remove();
-      // document.body.classList.add('theme-2');
       localStorage.setItem('theme', '2');
     } else if (e.target.value === '3') {
       document.documentElement.setAttribute('data-theme', 'three')
-      // document.body.classList.remove();
-      // document.body.classList.add('theme-3');
       localStorage.setItem('theme', '3');
     }
   })
 })
 
 // calculate
-
-// TODO: 小數點
-// TODO: 0 開頭
-// TODO: * / textContent
-// TODO: 超出鍵盤 overflow hidden?
-
 const display = document.querySelector("#calculator-display");
-const numberBtns = document.querySelectorAll('.btn-number');
-const operatorBtns = document.querySelectorAll('.btn-operator');
 const btns = document.querySelectorAll('.btn');
+
 
 btns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    // appendNumber(e.target.textContent)
     appendNumber(e.target.dataset.key);
   });
-  // btn.addEventListener("keydown", (e) => {
-  //   console.log("keydown", e.target.dataset.key);
-  //   e.target.classList.add("btn-pressed");
-  // })
 })
 
 function appendNumber(btn) {
   display.textContent += btn;
+  formatDisplay();
 };
 
+let hasDecimal = false;
+
+function appendDecimal() {
+  display.textContent += '.';
+  hasDecimal = true;
+  formatDisplay();
+}
+
+function appendOperator(btn) {
+  display.textContent += formatOperator(btn);
+}
+
+// Helper function to format the display with comma separators
+
+function formatDisplay() {
+  let displayText = display.textContent;
+  console.log("Before formatting:", displayText);
+
+  // Use regex to split the display into numbers and operators
+  // This regex matches numbers (including decimals) and keeps operators separate
+  const parts = displayText.split(/([+\-*/×÷])/);
+
+  // Format each part
+  for (let i = 0; i < parts.length; i++) {
+    // Only format parts that appear to be numbers
+    if (!isOperator(parts[i]) && !isFormattedOperator(parts[i])) {
+      parts[i] = formatNumberPart(parts[i]);
+    }
+  }
+
+  display.textContent = parts.join('');
+  console.log("After formatting:", display.textContent);
+}
+
+function isOperator(str) {
+  return ['+', '-', '*', '/'].includes(str);
+}
+
+function isFormattedOperator(str) {
+  return ['+', '-', '×', '÷'].includes(str);
+}
+
+function formatOperator(operator) {
+  switch (operator) {
+    case '*': return '×';
+    case '/': return '÷';
+    default: return operator;
+  }
+}
+
+function formatNumberPart(part) {
+  if (!part || part.trim() === '') return part;
+
+  if (part === ".") {
+    return "0.";
+  }
+
+  let parts = part.split(".");
+  let integerPart = parts[0];
+  let decimalPart = parts.length > 1 ? parts[1] : "";
+
+  // Remove non-digit characters, then format with commas
+  if (integerPart === "" || integerPart === "0") {
+    integerPart = "0"; 
+  } else {
+    integerPart = integerPart.replace(/[^\d]/g, '');
+    if (integerPart !== '') {
+      integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
+
+  if (decimalPart) {
+    decimalPart = decimalPart.replace(/[^\d]/g, '');
+    if (decimalPart !== '') {
+      decimalPart = decimalPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
+
+  if (parts.length > 1) {
+    return integerPart + "." + decimalPart;
+  } else {
+    return integerPart;
+  }
+}
+
 function deleteDisplay() {
-  console.log("deleteDisplay");
   let chars = display.textContent.split('');
-  chars.pop();
+  let lastChar = chars.pop();
   display.textContent = chars.join('');
 
-  // display.textContent = display.value.slice(0, -1);
+  if (lastChar === ".") {
+    hasDecimal = false;
+  }
+
+  formatDisplay();
 }
 
 function clearDisplay() {
   display.textContent = '';
+  hasDecimal = false;
 };
 
 function calculateResult() {
-  const expression = display.textContent;
+  const expression = display.textContent.replace(/,/g, ''); // Remove commas for calculation
   const result = parseAndCompute(expression);
   display.textContent = result;
-  console.log(result);
+  formatDisplay();
 };
 
-// Parses the expression and computes the result without eval
 function parseAndCompute(expression) {
-  const tokens = expression.match(/(\d+(\.\d+)?|[+\-*/])/g); // tokenize numbers and operators
+  console.log(expression)
+  // Tokenize numbers and operators, ensuring x and ÷ are recognized
+  const tokens = expression.match(/(\d+(\.\d+)?|[+\-*/×÷])/g);
+  console.log(tokens);
   if (!tokens) return;
 
-  // Step 1: Handle * and / first
+  // Handle multiplication (x) and division (÷) first
   const stack = [];
-  let current = parseFloat(tokens[0]); // Initialize with the first number
+  let current = parseFloat(tokens[0]);
 
   for (let i = 1; i < tokens.length; i += 2) {
     const operator = tokens[i];
     const nextNumber = parseFloat(tokens[i + 1]);
 
-    if (operator === "*") {
+    if (operator === "×" || operator === "*") {
       current *= nextNumber;
-    } else if (operator === "/") {
+    } else if (operator === "÷" || operator === "*") {  // Directly check for ÷
       current /= nextNumber;
     } else {
-      stack.push(current); // Push current value to stack
-      stack.push(operator); // Push the operator
-      current = nextNumber; // Update current number
+      stack.push(current);
+      stack.push(operator);
+      current = nextNumber;
     }
   }
-  stack.push(current); // Add the last computed number to the stack
+  stack.push(current);
 
-  // Step 2: Handle + and - operations
+  // Handle addition (+) and subtraction (-)
   let result = stack[0];
   for (let i = 1; i < stack.length; i += 2) {
     const operator = stack[i];
@@ -117,10 +187,11 @@ function parseAndCompute(expression) {
   return result;
 }
 
+
 function handleButtonPress(key, fn) {
   btns.forEach((btn) => {
     if (btn.dataset.key === key) {
-      console.log("dataset", btn.dataset.key);
+      console.log(btn.dataset.key)
       btn.classList.add("btn-pressed");
       fn(key);
       setTimeout(() => btn.classList.remove("btn-pressed"), 200);
@@ -129,27 +200,18 @@ function handleButtonPress(key, fn) {
 };
 
 document.addEventListener("keydown", (event) => {
-  const key = event.key; // Get the key pressed
-  
-  console.log(key);
-
+  const key = event.key;
   if (!isNaN(key)) {
-    // appendNumber(key);
     handleButtonPress(key, appendNumber);
-  // } else if (key === ".") {
-  //   // appendDecimal(key);
-  //   handleButtonPress(key, appendDecimal);
+  } else if (key === ".") {
+    handleButtonPress(key, appendDecimal);
   } else if (key === "+" || key === "-" || key === "*" || key === "/") {
-    // appendOperator(key);
-    handleButtonPress(key, appendNumber);
+    handleButtonPress(key, appendOperator);
   } else if (key === "Backspace") {
-    // deleteDisplay();
     handleButtonPress(key, deleteDisplay);
   } else if (key === "Enter") {
-    // calculateResult();
     handleButtonPress(key, calculateResult);
   } else if (key === "Escape") {
-    // clearDisplay();
     handleButtonPress(key, clearDisplay);
   }
 });
